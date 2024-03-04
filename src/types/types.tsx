@@ -4,3 +4,7 @@ export interface IProduct {
   brand: string | null;
   price: number;
 }
+
+export interface ApiResponse<T> {
+  result: T;
+}
