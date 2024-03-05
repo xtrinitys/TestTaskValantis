@@ -1,24 +1,31 @@
-import React, {useEffect, useState} from 'react';
-import './styles/App.css'
-import {IProduct} from "./types/types";
+import React, { useEffect, useState } from "react";
+import "./styles/App.css";
+import { IProduct } from "./types/types";
 import ProductList from "./components/ProductList";
 import ProductsService from "./API/ProductsService";
+import Loader from "./components/UI/Loader/Loader";
+import { useFetching } from "./hooks/useFetching";
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
 
-  useEffect(  () => {
-    const fetchProducts = async () => {
-      const responseProducts = await ProductsService.getProducts();
-      responseProducts ? setProducts(responseProducts) : setProducts([]);
-    };
+  const [fetchProducts, isProductsLoading, productsError] = useFetching(
+    async (limit: number, offset: number) => {
+      const response = await ProductsService.getProducts(limit, offset);
+      response ? setProducts(response) : setProducts([]);
+    },
+  );
 
-    fetchProducts().catch(console.error);
-  }, [])
+  useEffect(() => {
+    fetchProducts()
+  }, []);
 
   return (
     <div className="App">
-      <ProductList products={products}/>
+      {
+        isProductsLoading && <Loader/>
+      }
+      <ProductList products={products} />
     </div>
   );
 }
