@@ -28,8 +28,17 @@ export default class ProductsService {
     return response.data.result;
   }
 
-  static async getProducts(offset = 0, limit = 50): Promise<IProduct[]> {
-    const ids = await ProductsService.getIds(offset, limit);
-    return await this.getItems(ids);
+  static async getProducts(offset = 0, limit = 50): Promise<IProduct[] | null> {
+    try {
+      const ids = await ProductsService.getIds(offset, limit);
+      return await this.getItems(ids);
+    } catch (e: any) {
+      if (e.response.status !== 200) {
+        console.log(
+          `API call failed with status code: ${e.response.status} after 3 retry attempts`,
+        );
+      }
+    }
+    return null;
   }
 }
