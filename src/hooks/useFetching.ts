@@ -3,7 +3,7 @@ import { useState } from "react";
 export const useFetching = (
   callback: any,
 ): [(...args: any[]) => void, boolean, string] => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
   const fetching = async (...args: any[]) => {

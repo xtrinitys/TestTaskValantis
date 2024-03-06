@@ -3,13 +3,12 @@ import {IProduct} from "../types/types";
 import classNames from "classnames";
 
 interface ProductCardProps {
-  column?: number;
   product: IProduct;
 }
 
-const ProductCard: FC<ProductCardProps> = ({product, column}) => {
+const ProductCard: FC<ProductCardProps> = ({product}) => {
   return (
-    <div className={classNames('product-list__card', `col-${column}`)}>
+    <div className={'product-list__card'}>
       <div className="product-list__card-id">
         {product.id}
       </div>
