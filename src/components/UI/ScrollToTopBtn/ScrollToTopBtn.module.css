@@ -1,0 +1,15 @@
+.scrollToTopBtn {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    font-size: 32px;
+    padding: 0.2em;
+    z-index: 99;
+    border-radius: 10px;
+    border: 1px solid var(--clr-almond);
+    transition: box-shadow .2s ease-in, opacity .3s ease;
+}
+
+.scrollToTopBtn:hover {
+    box-shadow: 0 0 10px 0 var(--clr-almond);
+}
