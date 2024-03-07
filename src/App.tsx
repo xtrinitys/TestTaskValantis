@@ -7,42 +7,43 @@ import Loader from "./components/UI/Loader/Loader";
 import { useFetching } from "./hooks/useFetching";
 import { removeDuplicateObjects } from "./utils/utils";
 import { useObserver } from "./hooks/useObserver";
+import ScrollToTopBtn from "./components/UI/ScrollToTopBtn/ScrollToTopBtn";
 
-// TODO: EXACTLY 50 ELEMENTS PER PAGE
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
-  const [page, setPage] = useState(0);
+  const [offset, setOffset] = useState(0);
   const limit = 50;
   const lastElement = useRef<HTMLDivElement>(null);
 
   const [fetchProducts, isProductsLoading, productsError] = useFetching(
-    async (page: number, limit: number) => {
-      const offset = page * limit;
+    async () => {
       const response = await ProductsService.getProducts(offset, limit);
       if (response) {
-        updateProducts(response);
+        appendProducts(response);
+        updateOffset();
       }
     },
   );
 
-  useObserver(lastElement, isProductsLoading, setNextPage);
-
   useEffect(() => {
-    fetchProducts(page, limit);
-  }, [page, limit]);
+    fetchProducts();
+  }, []);
 
-  function updateProducts(newItems: IProduct[]) {
+  useObserver(lastElement, isProductsLoading, fetchProducts);
+
+  function updateOffset() {
+    setOffset(offset + limit);
+  }
+
+  function appendProducts(newItems: IProduct[]) {
     setProducts(
       removeDuplicateObjects<IProduct>([...products, ...newItems], "id"),
     );
   }
 
-  function setNextPage() {
-    setPage(page + 1);
-  }
-
   return (
     <div className="App">
+      <ScrollToTopBtn />
       <ProductList products={products} />
       <div ref={lastElement} style={{ height: 20 }}></div>
       {isProductsLoading && <Loader />}
