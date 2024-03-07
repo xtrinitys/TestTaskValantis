@@ -32,6 +32,11 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

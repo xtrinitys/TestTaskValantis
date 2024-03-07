@@ -31,9 +31,9 @@ export default class ProductsService {
   static async getProducts(offset = 0, limit = 50): Promise<IProduct[] | null> {
     try {
       const ids = await ProductsService.getIds(offset, limit);
-      return await this.getItems(ids);
+      return await ProductsService.getItems(ids);
     } catch (e: any) {
-      if (e.response.status !== 200) {
+      if (e.response?.status !== 200) {
         console.log(
           `API call failed with status code: ${e.response.status} after 3 retry attempts`,
         );

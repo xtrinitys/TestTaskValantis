@@ -22,4 +22,3 @@ export function hashText(content: string): string {
 export function getDateString(date: Date): string {
   return date.toISOString().split("T")[0].replaceAll("-", "");
 }
-

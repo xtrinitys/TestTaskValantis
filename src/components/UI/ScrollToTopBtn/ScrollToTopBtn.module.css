@@ -7,7 +7,7 @@
     z-index: 99;
     border-radius: 10px;
     border: 1px solid var(--clr-almond);
-    transition: box-shadow .2s ease-in, opacity .3s ease;
+    transition: box-shadow .2s linear, opacity .3s ease;
 }
 
 .scrollToTopBtn:hover {

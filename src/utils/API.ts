@@ -20,7 +20,9 @@ export function setupAxios() {
       return retryCount * 2000;
     },
     onRetry: (retryCount, error) => {
-      console.log(`status: ${error.response?.status}; retry attempt: ${retryCount}`);
+      console.log(
+        `status: ${error.response?.status}; retry attempt: ${retryCount}`,
+      );
     },
   });
 }
