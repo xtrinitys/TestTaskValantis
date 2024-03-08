@@ -1,5 +1,5 @@
 import React from "react";
-import {capitalizeWord} from "../../../utils/utils";
+import { capitalizeWord } from "../../../utils/utils";
 
 interface RadioInputProps {
   name: string;
@@ -24,7 +24,7 @@ const RadioInput = ({
         onClick={onClick}
         readOnly
       />
-      {capitalizeWord('' + value)}
+      {capitalizeWord("" + value)}
     </label>
   );
 };

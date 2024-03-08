@@ -1,6 +1,6 @@
 import { formGetIdsRequest, formGetItemsRequest } from "../types/API";
 import { IProduct } from "../types/types";
-import { AbstractService } from "./AbstractService";
+import AbstractService from "./AbstractService";
 
 export default class ProductsService extends AbstractService {
   private static async getIds(

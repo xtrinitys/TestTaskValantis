@@ -1,7 +1,7 @@
-import {ApiActionsParams, ApiRequestBody, ApiResponse} from "../types/API";
+import { ApiActionsParams, ApiRequestBody, ApiResponse } from "../types/API";
 import axios from "axios";
 
-export abstract class AbstractService {
+export default abstract class AbstractService {
   private static API: string = process.env.REACT_APP_API || "";
 
   protected static async apiRequest<T>(
