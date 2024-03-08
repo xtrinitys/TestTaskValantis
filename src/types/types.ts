@@ -5,11 +5,9 @@ export interface IProduct {
   price: number;
 }
 
-export interface ApiResponse<T> {
-  result: T;
-}
-
 export interface SearchQuery<T> {
   query: string;
   filter: T | null;
 }
+
+export type ValueOf<T> = T[keyof T];
