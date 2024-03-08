@@ -22,3 +22,11 @@ export function hashText(content: string): string {
 export function getDateString(date: Date): string {
   return date.toISOString().split("T")[0].replaceAll("-", "");
 }
+
+export const isObjEmpty = (obj: Object): boolean =>
+  Object.values(obj).every((x) => x === null || x === "");
+
+export const capitalizeWord = (word: string) => {
+  const lowerCase = word.toLowerCase();
+  return lowerCase.charAt(0).toUpperCase() + lowerCase.slice(1);
+};

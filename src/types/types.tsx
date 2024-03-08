@@ -8,3 +8,8 @@ export interface IProduct {
 export interface ApiResponse<T> {
   result: T;
 }
+
+export interface SearchQuery<T> {
+  query: string;
+  filter: T | null;
+}
