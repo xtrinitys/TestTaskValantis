@@ -3,10 +3,8 @@ import "./styles/App.css";
 import { IProduct, SearchQuery } from "./types/types";
 import ProductList from "./components/ProductList";
 import ProductsService from "./API/ProductsService";
-import Loader from "./components/UI/Loader/Loader";
 import { useFetching } from "./hooks/useFetching";
 import { removeDuplicateObjects } from "./utils/utils";
-import ScrollToTopBtn from "./components/UI/ScrollToTopBtn/ScrollToTopBtn";
 import { ProductFilterOptions } from "./components/ProductFilter";
 import { useObserver } from "./hooks/useObserver";
 import Header from "./components/UI/Header/Header";
@@ -16,7 +14,7 @@ function App() {
   const [offset, setOffset] = useState(0);
   const [isFiltered, setIsFiltered] = useState(false);
   const limit = 50;
-  const lastElement = useRef<HTMLDivElement>(null);
+  const lastProductRef = useRef<HTMLDivElement>(null);
 
   const setUniqueProducts = (products: IProduct[]) =>
     setProducts(removeDuplicateObjects(products, "id"));
@@ -74,7 +72,7 @@ function App() {
   }, []);
 
   useObserver(
-    lastElement,
+    lastProductRef,
     isProductsLoading,
     () => fetchProducts(offset, limit),
     !isFiltered,
@@ -88,17 +86,14 @@ function App() {
     setOffset(offset + limit);
   }
 
-  // FIXME: need decomposition
   return (
     <div className="App">
       <Header handleHomeButton={refreshProducts} handleFilter={onFilter} />
-      <ScrollToTopBtn />
-      <ProductList products={products} />
-      <div ref={lastElement} style={{ height: 20 }}></div>
-      {isProductsLoading && <Loader />}
-      {!isProductsLoading && products.length <= 0 && (
-        <div className="products-not-found">Products not found :(</div>
-      )}
+      <ProductList
+        products={products}
+        lastElementRef={lastProductRef}
+        isProductsLoading={isProductsLoading}
+      />
     </div>
   );
 }

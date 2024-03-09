@@ -128,8 +128,9 @@ html, body {
     transform: scale(0.7);
 }
 
-.products-not-found {
+.product-list__not-found {
     position: absolute;
+    text-align: center;
     font-size: 1.5rem;
     left: 50%;
     top: 50%;

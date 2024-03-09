@@ -3,6 +3,7 @@ import HomeBtn from "../HomeBtn/HomeBtn";
 import ProductFilter, {ProductFilterOptions} from "../../ProductFilter";
 import cl from "./Header.module.css";
 import {SearchQuery} from "../../../types/types";
+import ScrollToTopBtn from "../ScrollToTopBtn/ScrollToTopBtn";
 
 interface HeaderProps {
   handleHomeButton: () => void;
@@ -16,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({ handleHomeButton, handleFilter }) => {
         <i className="ri-home-4-line"></i>
       </HomeBtn>
       <ProductFilter onFilter={handleFilter} />
+      <ScrollToTopBtn />
     </header>
   );
 };
