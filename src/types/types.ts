@@ -7,7 +7,7 @@ export interface IProduct {
 
 export interface SearchQuery<T> {
   query: string;
-  filter: T | null;
+  filter: T;
 }
 
 export type ValueOf<T> = T[keyof T];

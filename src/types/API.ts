@@ -1,3 +1,5 @@
+import {isNumeric} from "../utils/utils";
+
 export interface ApiResponse<T> {
   result: T;
 }
@@ -68,5 +70,5 @@ export const formFilterRequest = (
   value: string | number,
 ): ApiRequestBody<FilterParams> => ({
   action: ApiAction.FILTER,
-  params: { [field]: value },
+  params: { [field]: isNumeric(value) ? parseFloat(value as string) : value},
 });
