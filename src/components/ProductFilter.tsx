@@ -87,7 +87,12 @@ const ProductFilter = ({ onFilter }: ProductFilterProps) => {
           onChange={changeFilter}
         />
       </div>
-      <button className="product-filter__btn-search" onClick={handleOnFilter}>
+      <button
+        className={classNames("product-filter__btn-search", {
+          active: isActive,
+        })}
+        onClick={handleOnFilter}
+      >
         <i className="ri-search-line"></i>
       </button>
       <div className="product-filter__input-box">
