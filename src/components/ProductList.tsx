@@ -6,7 +6,6 @@ interface ProductListProps {
   products: IProduct[];
 }
 
-// TODO: if not products
 const ProductList: FC<ProductListProps> = ({ products }) => {
   return (
     <div className="product-list">

@@ -19,6 +19,10 @@ export function hashText(content: string): string {
   return hash.hex();
 }
 
+export function isNumeric(n: any) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 export function getDateString(date: Date): string {
   return date.toISOString().split("T")[0].replaceAll("-", "");
 }

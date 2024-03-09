@@ -4,23 +4,29 @@ import { SearchQuery } from "../types/types";
 import RadioInput from "./UI/RadioInput/RadioInput";
 
 export enum ProductFilterOptions {
-  TITLE = "title",
+  PRODUCT = "product",
   BRAND = "brand",
   PRICE = "price",
-  EMPTY = "",
 }
 
 interface ProductFilterProps {
-  setSearch: (search: SearchQuery<ProductFilterOptions>) => void;
-  search: SearchQuery<ProductFilterOptions>;
+  onFilter: (search: SearchQuery<ProductFilterOptions>) => void;
 }
 
-const ProductFilter = ({ setSearch, search }: ProductFilterProps) => {
+const ProductFilter = ({ onFilter }: ProductFilterProps) => {
   const [isActive, setIsActive] = useState(false);
   const [isDropdownActive, setIsDropdownActive] = useState(false);
+  const [search, setSearch] = useState<SearchQuery<ProductFilterOptions>>({
+    query: "",
+    filter: ProductFilterOptions.PRODUCT,
+  });
 
   const parentRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleOnFilter = () => {
+    onFilter(search);
+  };
 
   const handleOnFocus = () => {
     setIsActive(true);
@@ -37,20 +43,16 @@ const ProductFilter = ({ setSearch, search }: ProductFilterProps) => {
     setIsDropdownActive(!isDropdownActive);
   };
 
-  const changeFilter = (e: React.MouseEvent<HTMLInputElement>) => {
+  const changeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFilter = e.currentTarget.value as ProductFilterOptions;
     setSearch({
       ...search,
-      filter:
-        search.filter === selectedFilter
-          ? ProductFilterOptions.EMPTY
-          : selectedFilter,
+      filter: selectedFilter,
     });
   };
 
   const changeQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setSearch({ ...search, query });
+    setSearch({ ...search, query: e.target.value });
   };
 
   return (
@@ -68,24 +70,24 @@ const ProductFilter = ({ setSearch, search }: ProductFilterProps) => {
       >
         <RadioInput
           name="filter"
-          value={ProductFilterOptions.TITLE}
-          checkedPredicate={ProductFilterOptions.TITLE === search.filter}
-          onClick={changeFilter}
+          value={ProductFilterOptions.PRODUCT}
+          checkedPredicate={ProductFilterOptions.PRODUCT === search.filter}
+          onChange={changeFilter}
         />
         <RadioInput
           name="filter"
           value={ProductFilterOptions.BRAND}
           checkedPredicate={ProductFilterOptions.BRAND === search.filter}
-          onClick={changeFilter}
+          onChange={changeFilter}
         />
         <RadioInput
           name="filter"
           value={ProductFilterOptions.PRICE}
           checkedPredicate={ProductFilterOptions.PRICE === search.filter}
-          onClick={changeFilter}
+          onChange={changeFilter}
         />
       </div>
-      <button className="product-filter__btn-search">
+      <button className="product-filter__btn-search" onClick={handleOnFilter}>
         <i className="ri-search-line"></i>
       </button>
       <div className="product-filter__input-box">

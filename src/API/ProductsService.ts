@@ -1,6 +1,11 @@
-import { formGetIdsRequest, formGetItemsRequest } from "../types/API";
+import {
+  formFilterRequest,
+  formGetIdsRequest,
+  formGetItemsRequest,
+} from "../types/API";
 import { IProduct } from "../types/types";
 import AbstractService from "./AbstractService";
+import { ProductFilterOptions } from "../components/ProductFilter";
 
 export default class ProductsService extends AbstractService {
   private static async getIds(
@@ -16,11 +21,27 @@ export default class ProductsService extends AbstractService {
     return await ProductsService.apiRequest(req);
   }
 
+  private static async getFilteredIds(
+    field: ProductFilterOptions,
+    value: string | number,
+  ): Promise<string[] | null> {
+    const req = formFilterRequest(field, value);
+    return await ProductsService.apiRequest(req);
+  }
+
   static async getProducts(
     offset: number,
     limit: number,
   ): Promise<IProduct[] | null> {
     const ids = await ProductsService.getIds(offset, limit);
+    return ids ? await ProductsService.getItems(ids) : null;
+  }
+
+  static async getFilteredProducts(
+    field: ProductFilterOptions,
+    value: string | number,
+  ): Promise<IProduct[] | null> {
+    const ids = await ProductsService.getFilteredIds(field, value);
     return ids ? await ProductsService.getItems(ids) : null;
   }
 }
