@@ -227,9 +227,9 @@ html, body {
     width: 350px;
     padding: 10px 50px;
     background-color: transparent;
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-    border-left: 1px solid var(--clr-almond);
-    border-right: 1px solid var(--clr-almond);
+    transition: width 500ms  cubic-bezier(0, 0.110, 0.35, 2);
+    border-left: 3px solid var(--clr-almond);
+    border-right: 3px solid var(--clr-almond);
 }
 
 .product-filter__input:focus {
