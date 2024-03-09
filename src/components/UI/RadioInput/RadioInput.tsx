@@ -5,14 +5,14 @@ interface RadioInputProps {
   name: string;
   value: string | number;
   checkedPredicate: boolean;
-  onClick: (e: React.MouseEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const RadioInput = ({
   name,
   value,
   checkedPredicate,
-  onClick,
+  onChange,
 }: RadioInputProps) => {
   return (
     <label>
@@ -21,8 +21,7 @@ const RadioInput = ({
         name={name}
         value={value}
         checked={checkedPredicate}
-        onClick={onClick}
-        readOnly
+        onChange={onChange}
       />
       {capitalizeWord("" + value)}
     </label>

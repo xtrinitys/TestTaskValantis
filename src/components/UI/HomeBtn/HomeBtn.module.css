@@ -1,0 +1,17 @@
+.homeBtn {
+    font-size: 20px;
+    background-color: var(--clr-bittersweet);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: all .2s ease, transform .1s linear;
+}
+
+.homeBtn:hover {
+    background-color: var(--clr-almond);
+    color: var(--clr-bittersweet)
+}
+
+.homeBtn:active {
+    transform: scale(0.9);
+}
