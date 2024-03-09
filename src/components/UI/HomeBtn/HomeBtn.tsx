@@ -6,7 +6,7 @@ interface HomeBtnProps {
   children?: React.ReactNode;
 }
 
-const HomeBtn = ({ onClick, children }: HomeBtnProps) => {
+const HomeBtn: React.FC<HomeBtnProps> = ({ onClick, children }) => {
   return (
     <button onClick={onClick} className={cl.homeBtn}>
       {children}

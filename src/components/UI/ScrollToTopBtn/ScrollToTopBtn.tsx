@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import cl from "./ScrollToTopBtn.module.css";
 
-const ScrollToTopBtn = () => {
+const ScrollToTopBtn: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

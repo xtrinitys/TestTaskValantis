@@ -7,11 +7,9 @@ import Loader from "./components/UI/Loader/Loader";
 import { useFetching } from "./hooks/useFetching";
 import { removeDuplicateObjects } from "./utils/utils";
 import ScrollToTopBtn from "./components/UI/ScrollToTopBtn/ScrollToTopBtn";
-import ProductFilter, {
-  ProductFilterOptions,
-} from "./components/ProductFilter";
-import HomeBtn from "./components/UI/HomeBtn/HomeBtn";
-import {useObserver} from "./hooks/useObserver";
+import { ProductFilterOptions } from "./components/ProductFilter";
+import { useObserver } from "./hooks/useObserver";
+import Header from "./components/UI/Header/Header";
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -75,7 +73,12 @@ function App() {
     fetchProducts(offset, limit);
   }, []);
 
-  useObserver(lastElement, isProductsLoading, () => fetchProducts(offset, limit), !isFiltered);
+  useObserver(
+    lastElement,
+    isProductsLoading,
+    () => fetchProducts(offset, limit),
+    !isFiltered,
+  );
 
   const onFilter = (search: SearchQuery<ProductFilterOptions>) => {
     fetchProducts(offset, limit, search);
@@ -85,14 +88,10 @@ function App() {
     setOffset(offset + limit);
   }
 
+  // FIXME: need decomposition
   return (
     <div className="App">
-      <header className="header">
-        <HomeBtn onClick={refreshProducts}>
-          <i className="ri-home-4-line"></i>
-        </HomeBtn>
-        <ProductFilter onFilter={onFilter} />
-      </header>
+      <Header handleHomeButton={refreshProducts} handleFilter={onFilter} />
       <ScrollToTopBtn />
       <ProductList products={products} />
       <div ref={lastElement} style={{ height: 20 }}></div>

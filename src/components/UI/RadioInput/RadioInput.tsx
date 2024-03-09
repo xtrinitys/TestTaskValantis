@@ -8,12 +8,12 @@ interface RadioInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const RadioInput = ({
+const RadioInput: React.FC<RadioInputProps> = ({
   name,
   value,
   checkedPredicate,
   onChange,
-}: RadioInputProps) => {
+}) => {
   return (
     <label>
       <input

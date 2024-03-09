@@ -13,7 +13,7 @@ interface ProductFilterProps {
   onFilter: (search: SearchQuery<ProductFilterOptions>) => void;
 }
 
-const ProductFilter = ({ onFilter }: ProductFilterProps) => {
+const ProductFilter: React.FC<ProductFilterProps> = ({ onFilter }) => {
   const [isActive, setIsActive] = useState(false);
   const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [search, setSearch] = useState<SearchQuery<ProductFilterOptions>>({
