@@ -102,12 +102,13 @@ html, body {
 .product-list__card-footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
     padding-inline: 1rem;
 }
 
 .product-list__card-price {
     background-color: var(--clr-bittersweet);
-    margin-top: 0.5rem;
     border-radius: var(--border-radius);
     padding: 10px;
     width: fit-content;
@@ -253,7 +254,8 @@ html, body {
     position: absolute;
     bottom: calc(100% + 15px);
     left: 0;
-    width: 100%;
+    min-width: 100%;
+    width: fit-content;
     height: fit-content;
     background-color: rgba(191, 67, 66, 0.5);
     border-radius: var(--border-radius);
@@ -295,7 +297,6 @@ html, body {
     }
 }
 
-/* Media */
 @media screen and (max-width: 900px) {
     :root {
         --fz-root: 16px;
@@ -305,5 +306,15 @@ html, body {
 @media screen and (max-width: 768px) {
     .product-list {
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .product-filter.active .product-filter__input-box .product-filter__input {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .product-filter.active .product-filter__input-box .product-filter__input {
+        width: 180px;
     }
 }
