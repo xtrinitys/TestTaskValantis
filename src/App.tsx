@@ -69,10 +69,12 @@ function App() {
     fetchProducts(0, limit);
   };
 
+  // Initial load
   useEffect(() => {
     fetchProducts(page, limit);
   }, []);
 
+  // Pagination on filtered products
   useEffect(() => {
     if (isFiltered) {
       const offset = page * limit;
@@ -81,6 +83,7 @@ function App() {
     }
   }, [filteredProducts, page, limit, isFiltered]);
 
+  // Infinite scroll on empty filter
   useObserver(
     lastProductRef,
     isProductsLoading,
