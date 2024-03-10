@@ -30,7 +30,6 @@ button {
 /* Base styles */
 
 html, body {
-    scroll-behavior: smooth;
     background-color: var(--clr-beaver);
     font-size: var(--fz-root);
 }
@@ -45,7 +44,7 @@ html, body {
 }
 
 .App {
-    margin: 5rem 2rem;
+    margin: 5rem 2rem 3rem;
     min-height: 100%;
 }
 

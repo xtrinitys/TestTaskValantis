@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
-import { SearchQuery } from "../types/types";
-import RadioInput from "./UI/RadioInput/RadioInput";
+import { SearchQuery } from "../../types/types";
+import RadioInput from "../UI/RadioInput/RadioInput";
 
 export enum ProductFilterOptions {
   PRODUCT = "product",
@@ -49,6 +49,12 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilter }) => {
       ...search,
       filter: selectedFilter,
     });
+  };
+
+  const onPressEnter = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleOnFilter();
+    }
   };
 
   const changeQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,6 +111,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ onFilter }) => {
           ref={inputRef}
           value={search.query}
           onChange={changeQuery}
+          onKeyDown={onPressEnter}
           placeholder="Filter products"
         />
       </div>

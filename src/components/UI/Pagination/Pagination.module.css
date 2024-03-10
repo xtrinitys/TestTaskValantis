@@ -1,0 +1,35 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+    margin-inline: auto;
+    margin-top: 3rem;
+}
+
+
+.paginationItem {
+    user-select: none;
+    cursor: pointer;
+    background-color: var(--clr-liver);
+    border-radius: var(--border-radius);
+    min-width: 60px;
+    text-align: center;
+    height: auto;
+    padding: 0.7em;
+    transition: all .3s ease;
+}
+
+.paginationItem[class~=active] {
+    color: var(--clr-liver);
+    background-color: var(--clr-almond);
+}
+
+.paginationItem:hover {
+    color: var(--clr-liver);
+    background-color: var(--clr-almond);
+}
+
+.paginationArrow {
+    margin-inline: 1rem;
+}

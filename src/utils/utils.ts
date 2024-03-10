@@ -19,6 +19,10 @@ export function hashText(content: string): string {
   return hash.hex();
 }
 
+export function generateArrayFromN(N: number) {
+  return [...Array(N).keys()];
+}
+
 export function isNumeric(n: any) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }

@@ -5,7 +5,7 @@ import {
 } from "../types/API";
 import { IProduct } from "../types/types";
 import AbstractService from "./AbstractService";
-import { ProductFilterOptions } from "../components/ProductFilter";
+import { ProductFilterOptions } from "../components/Product/ProductFilter";
 
 export default class ProductsService extends AbstractService {
   private static async getIds(

@@ -1,6 +1,6 @@
 import React from "react";
 import HomeBtn from "../HomeBtn/HomeBtn";
-import ProductFilter, {ProductFilterOptions} from "../../ProductFilter";
+import ProductFilter, {ProductFilterOptions} from "../../Product/ProductFilter";
 import cl from "./Header.module.css";
 import {SearchQuery} from "../../../types/types";
 import ScrollToTopBtn from "../ScrollToTopBtn/ScrollToTopBtn";
