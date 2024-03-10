@@ -17,6 +17,7 @@ function App() {
   const [isFiltered, setIsFiltered] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
   const limit = 50;
+  const offset = page * limit;
   const lastProductRef = useRef<HTMLDivElement>(null);
 
   const [fetchProducts, isProductsLoading] = useFetching(
@@ -28,8 +29,6 @@ function App() {
       if (search?.query === "") {
         return;
       }
-
-      const offset = page * limit;
 
       const fetchData = async (): Promise<IProduct[] | null> => {
         if (search) {
@@ -77,7 +76,6 @@ function App() {
   // Pagination on filtered products
   useEffect(() => {
     if (isFiltered) {
-      const offset = page * limit;
       setProducts(filteredProducts.slice(offset, offset + limit));
       window.scrollTo({ top: 0 });
     }
