@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/TestTaskValantis/static/css/main.125c09a8.css",
-    "main.js": "/TestTaskValantis/static/js/main.e4b1d5ba.js",
+    "main.css": "/TestTaskValantis/static/css/main.f403ceb5.css",
+    "main.js": "/TestTaskValantis/static/js/main.c9737e78.js",
     "index.html": "/TestTaskValantis/index.html"
   },
   "entrypoints": [
-    "static/css/main.125c09a8.css",
-    "static/js/main.e4b1d5ba.js"
+    "static/css/main.f403ceb5.css",
+    "static/js/main.c9737e78.js"
   ]
 }
